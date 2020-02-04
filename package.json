@@ -1,7 +1,7 @@
 {
 	"name": "meta-yaml-editor",
 	"displayName": "meta.yaml editor",
-	"description": "meta.yaml editing with autocompletion, validation, hover",
+	"description": "meta.yaml editing for che plugin registry with autocompletion, validation, hover",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.40.0"
@@ -13,14 +13,6 @@
 		"onLanguage:yaml"
 	],
 	"main": "./out/extension.js",
-	"contributes": {
-		"commands": [
-			{
-				"command": "extension.helloWorld",
-				"title": "Hello World"
-			}
-		]
-	},
 	"extensionDependencies": [
 		"redhat.vscode-yaml"
 	],
