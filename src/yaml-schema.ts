@@ -23,16 +23,8 @@ export async function getYAMLAPI(): Promise<{registerContributor: YamlSchemaCont
 	return yamlPlugin;
 }
 
-function isChePluginRegistry() {
-	const workspaceFolders = vscode.workspace.workspaceFolders;
-	if (workspaceFolders) {
-		return workspaceFolders.filter(fold => fold.name.toLowerCase() === 'che-plugin-registry').length >= 1;
-	}
-	return false;
-}
-
 export function onRequestSchemaURI(resource: string): string | undefined {
-	if (isChePluginRegistry() && resource.endsWith('/meta.yaml')) {
+	if (resource.endsWith('/meta.yaml')) {
 		return `${META_YAML_SCHEMA_NAME}://schema/meta`;
 	}
 	return undefined;
@@ -40,6 +32,5 @@ export function onRequestSchemaURI(resource: string): string | undefined {
 
 export async function getSchemaContent() {
 	const response = await xhr({ url: SCHEMA_URL });
-	const schema = JSON.parse(response.responseText);
 	return response.responseText;
 }
