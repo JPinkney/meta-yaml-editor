@@ -1,0 +1,28 @@
+sudo: false
+language: node_js
+node_js:
+- '10'
+os:
+- osx
+- linux
+before_install:
+- if [ $TRAVIS_OS_NAME == "linux" ]; then export CXX="g++-4.9" CC="gcc-4.9" DISPLAY=:99.0;
+  sh -e /etc/init.d/xvfb start; sleep 3; fi
+- npm install -g vsce
+install:
+- npm install
+- npm run compile
+script:
+- vsce package
+deploy:
+  provider: releases
+  email: joshpinkney@gmail.com
+  prerelease: false
+  file_glob: true
+  file: "*.vsix"
+  skip_cleanup: true
+  on:
+    tags: true
+    repo: JPinkney/meta-yaml-editor
+  api_key:
+    secure: vUeZjRid9c/Fya27gYheb/7ZTAuo8Rbyu6QQApI2VoJ+dfgwzrA7rtpaCWX45quQdY5tOgG1lqJdV3m0A3+7iqiE7eWggpdIs6b6J3rsTB/u2iouu1nw5KdWZ2rPY/2/RUA8Chw0rvL4M7QDdQFDnldI7vICXMeiv83MaeB3Iw0xqnQ4TQmq4TAV63vaBuvzF9JEysyCZZj6W+J1rYyv7RYw4ZDbGBwFE/pMl0pVKCsRXcSYodS5HQANzMbuqLt1cVBqLwpDJWtwV37YhqZHdZM7VsD9HFQuVem4D70l6GgHj+6VVrGhy/Bu0NdTQltoOWCOJR1JZfSrRbzlge3E3suhGMks6LFI/cet41NRiUmhzxgFF/wNEzlWI9M5L2Y+qCfyyGlRa69x4hy54+DRFdcWMnONiar3n/Xg4hvvd9yIdUaGr/yLU13vpZA9QtbzoMiOHovgAPsea7vzO9lTcC8sbS67MulAjgFocr0t9ubdwNTpo5afrZ7nya3cm42n1/Z/dPIOeM8frRK2XKCqy9FRsBQetuYI4NJUZImhUSszgAMZHxVD294nRnBaNCsuh8tuxg7dkAUvRXnFb2B5YW3CDLae19rfObyLPljPXGcAnqfEccZ0vMa6d6pPilwt+IpYxqOY5obIZYcQQ1BPF2Ff8OTJEfEDlZVv7brARWc=
