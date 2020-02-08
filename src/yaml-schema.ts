@@ -30,7 +30,12 @@ export function onRequestSchemaURI(resource: string): string | undefined {
 	return undefined;
 }
 
+let responseCache = '';
 export async function getSchemaContent() {
+	if (responseCache !== '') {
+		return responseCache;
+	}
 	const response = await xhr({ url: SCHEMA_URL });
-	return response.responseText;
+	responseCache = response.responseText;
+	return responseCache;
 }

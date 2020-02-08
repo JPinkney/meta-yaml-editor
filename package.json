@@ -2,9 +2,13 @@
 	"name": "meta-yaml-editor",
 	"displayName": "meta.yaml editor",
 	"description": "meta.yaml editing for che plugin registry with autocompletion, validation, hover",
+	"publisher": "jpinkney",
+	"repository": {
+		"url": "https://github.com/JPinkney/meta-yaml-editor"
+	},
 	"version": "0.0.1",
 	"engines": {
-		"vscode": "^1.40.0"
+		"vscode": "^1.41.0"
 	},
 	"categories": [
 		"Other"

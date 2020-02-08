@@ -1,4 +1,4 @@
-# meta-yaml-editor
+# Meta YAML editor
 
 This extension allows you to get autocompletion, validation, hover for meta.yaml files that are
 coming from the che-plugin-registry
